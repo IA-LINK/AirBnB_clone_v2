@@ -19,15 +19,23 @@ class HBNBCommand(cmd.Cmd):
     prompt = '(hbnb) ' if sys.__stdin__.isatty() else ''
 
     classes = {
-               'BaseModel': BaseModel, 'User': User, 'Place': Place,
-               'State': State, 'City': City, 'Amenity': Amenity,
+               'BaseModel': BaseModel, 
+               'User': User, 
+               'Place': Place,
+               'State': State, 
+               'City': City, 
+               'Amenity': Amenity,
                'Review': Review
               }
+    
     dot_cmds = ['all', 'count', 'show', 'destroy', 'update']
     types = {
-             'number_rooms': int, 'number_bathrooms': int,
-             'max_guest': int, 'price_by_night': int,
-             'latitude': float, 'longitude': float
+             'number_rooms': int, 
+             'number_bathrooms': int,
+             'max_guest': int, 
+             'price_by_night': int,
+             'latitude': float, 
+             'longitude': float
             }
 
     def preloop(self):
@@ -114,17 +122,29 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_create(self, args):
-        """ Create an object of any class"""
-        if not args:
+        #""" Create an object of any class"""
+        print("this is the args ==", type(args))
+
+        args = arg.split('')
+        print(args)
+
+        if not arg:
             print("** class name missing **")
             return
-        elif args not in HBNBCommand.classes:
-            print("** class doesn't exist **")
-            return
-        new_instance = HBNBCommand.classes[args]()
-        storage.save()
-        print(new_instance.id)
-        storage.save()
+        
+        if args[0] in self.classes:
+            print('yes')
+        else:
+            print("** class doesn't exit **")
+            return 
+
+        #elif args not in HBNBCommand.classes:
+            #print("** class doesn't exist **")
+            #return
+        #new_instance = HBNBCommand.classes[args]()
+        #storage.save()
+        #print(new_instance.id)
+        #storage.save()
 
     def help_create(self):
         """ Help information for the create method """
