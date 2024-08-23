@@ -31,5 +31,5 @@ class State(BaseModel, Base):
             for city_ins in all_cities.values():
                 if city_ins.state_id == self.id:
                     state_cities.append(city_ins)
-
             return state_cities
+        
